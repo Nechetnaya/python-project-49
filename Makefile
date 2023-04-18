@@ -12,3 +12,6 @@ publish: #публикация (не добавлять пакет в катал
 
 package-install: #Для установки пакета из операционной системы
 	python3 -m pip install --user dist/*.whl
+
+lint: #запуск линтера
+	poetry run flake8 brain_games
