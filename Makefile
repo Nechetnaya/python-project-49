@@ -4,6 +4,9 @@ install: # установить зависимости
 brain-games: #запуск
 	poetry run brain-games
 
+brain-even: #запуск игры even
+	poetry run brain-even
+
 build: #собрать пакет
 	poetry build
 
@@ -12,6 +15,9 @@ publish: #публикация (не добавлять пакет в катал
 
 package-install: #Для установки пакета из операционной системы
 	python3 -m pip install --user dist/*.whl
+
+reinstall: #Для переустановки пакета из операционной системы
+	python3 -m pip install --force-reinstall dist/*.whl
 
 lint: #запуск линтера
 	poetry run flake8 brain_games
