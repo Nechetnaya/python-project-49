@@ -1,5 +1,6 @@
 import random
 import prompt
+import operator
 
 
 def lets_play(game_name):
@@ -14,7 +15,7 @@ def lets_play(game_name):
             print('Correct!')
             i = i + 1
         else:
-            return print(motivate_user(name, game_name))
+            return print(motivate_user(name, game_name, answer, solve))
     congratulate_user(name)
 
 
@@ -28,26 +29,48 @@ def welcome_user():
 def say_conditions(game_name):
     if game_name == 'even':
         return 'Answer "yes" if the number is even, otherwise answer "no".'
+    elif game_name == 'calc':
+        return 'What is the result of the expression?'
 
 
 def get_random(game_name):
     if game_name == 'even':
         return random.randint(1, 1000)
+    elif game_name == 'calc':
+        a = random.randint(10, 50)
+        b = random.randint(1, 10)
+        operators = ('+', '*', '-')
+        c = random.choice(operators)
+        question = (a, b, c)
+        return question
 
 
 def ask(question, game_name):
     if game_name == 'even':
         return prompt.string(f'Question: {question}\nYour answer: ')
+    elif game_name == 'calc':
+        a, b, c = question
+        return int(prompt.string(f'Question: {a} {c} {b}\nYour answer: '))
 
 
 def get_solve(question, game_name):
     if game_name == 'even':
         return 'yes' if question % 2 == 0 else 'no'
+    elif game_name == 'calc':
+        action = {
+            "+": operator.add,
+            "-": operator.sub,
+            "*": operator.mul,
+        }
+        a, b, c = question
+        return action[c](a, b)
 
 
-def motivate_user(name, game_name):
+def motivate_user(name, game_name, answer, solve):
     if game_name == 'even':
         return f"Let's try again, {name}!"
+    elif game_name == 'calc':
+        return f"'{answer}' is wrong answer ;(. Correct answer was {solve}'.\nLet's try again, {name}!"
 
 
 def congratulate_user(name):
