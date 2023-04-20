@@ -31,18 +31,24 @@ def say_conditions(game_name):
         return 'Answer "yes" if the number is even, otherwise answer "no".'
     elif game_name == 'calc':
         return 'What is the result of the expression?'
+    elif game_name == 'gcd':
+        return 'Find the greatest common divisor of given numbers.'
 
 
 def get_random(game_name):
     if game_name == 'even':
-        return random.randint(1, 1000)
+        question = random.randint(1, 1000)
     elif game_name == 'calc':
         a = random.randint(10, 50)
         b = random.randint(1, 10)
         operators = ('+', '*', '-')
         c = random.choice(operators)
         question = (a, b, c)
-        return question
+    elif game_name == 'gcd':
+        a = random.randint(20, 100)
+        b = random.randint(20, 100)
+        question = (a, b)
+    return question
 
 
 def ask(question, game_name):
@@ -51,6 +57,9 @@ def ask(question, game_name):
     elif game_name == 'calc':
         a, b, c = question
         return int(prompt.string(f'Question: {a} {c} {b}\nYour answer: '))
+    elif game_name == 'gcd':
+        a, b = question
+        return int(prompt.string(f'Question: {a} {b}\nYour answer: '))
 
 
 def get_solve(question, game_name):
@@ -64,12 +73,20 @@ def get_solve(question, game_name):
         }
         a, b, c = question
         return action[c](a, b)
+    elif game_name == 'gcd':
+        a, b = question
+        while a != 0 and b != 0:
+            if a > b:
+                a = a % b
+            else:
+                b = b % a
+        return a + b
 
 
 def motivate_user(name, game_name, answer, solve):
     if game_name == 'even':
         return f"Let's try again, {name}!"
-    elif game_name == 'calc':
+    elif game_name == 'calc' or 'gcd':
         return f"'{answer}' is wrong answer ;(. Correct answer was {solve}'.\nLet's try again, {name}!"
 
 
