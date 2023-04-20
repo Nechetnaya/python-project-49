@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
-from brain_games.even_game import check_even
 
+from brain_games.game import lets_play
 
 
 def main():
-    check_even()
+    game_name = 'even'
+    lets_play(game_name)
