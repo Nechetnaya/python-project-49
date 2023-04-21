@@ -63,6 +63,10 @@ def get_random(game_name):
         i = random.randint(0, len(pr) - 1)
         solve = pr.pop(i)
         pr.insert(i, '..')
+        pr_0 = ''
+        for item in pr:
+            pr_0 += str(item) + ' '
+        pr = pr_0
         question = (pr, solve)
     else:
         return
@@ -80,7 +84,7 @@ def ask(question, game_name):
         return int(prompt.string(f'Question: {a} {b}\nYour answer: '))
     elif game_name == 'progression':
         pr, solve = question
-        return int(prompt.string(f'Question: {str(pr)[1:-1]}\nYour answer: '))
+        return int(prompt.string(f'Question: {pr.strip()}\nYour answer: '))
 
 
 # solves
