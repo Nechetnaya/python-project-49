@@ -36,14 +36,16 @@ def say_conditions(game_name):
         return 'Find the greatest common divisor of given numbers.'
     elif game_name == 'progression':
         return 'What number is missing in the progression?'
+    elif game_name == 'prime':
+        return 'Answer "yes" if given number is prime. Otherwise answer "no".'
 
 
 # getting random numbers and a problem
 def get_random(game_name):
-    if game_name == 'even':
-        question = random.randint(1, 1000)
+    if game_name == 'even' or 'prime':
+        question = random.randint(1, 50)
     elif game_name == 'calc':
-        a = random.randint(10, 50)
+        a = random.randint(10, 30)
         b = random.randint(1, 10)
         operators = ('+', '*', '-')
         c = random.choice(operators)
@@ -68,7 +70,7 @@ def get_random(game_name):
 
 
 def ask(question, game_name):
-    if game_name == 'even':
+    if game_name == 'even' or 'prime':
         return prompt.string(f'Question: {question}\nYour answer: ')
     elif game_name == 'calc':
         a, b, c = question
@@ -106,6 +108,13 @@ def solve_gcd(question):
     return a + b
 
 
+def solve_prime(question):
+    i = 2
+    while question % i != 0:
+        i += 1
+    return 'yes' if i == question else 'no'
+
+
 # common solve
 def get_solve(question, game_name):
     if game_name == 'even':
@@ -117,10 +126,12 @@ def get_solve(question, game_name):
     elif game_name == 'progression':
         progression, solve = question
         return solve
+    elif game_name == 'prime':
+        return solve_prime(question)
 
 
 def motivate_user(name, game_name, answer, solve):
-    if game_name == 'even':
+    if game_name == 'even' or 'prime':
         return f"Let's try again, {name}!"
     elif game_name == 'calc' or 'gcd' or 'progression':
         return f"'{answer}' is wrong answer ;(. Correct answer was {solve}'.\nLet's try again, {name}!"

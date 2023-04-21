@@ -13,8 +13,11 @@ brain-calc: #запуск игры calc
 brain-gcd: #запуск игры gcd
 	poetry run brain-gcd
 
-brain-progression: #запуск игры gcd
+brain-progression: #запуск игры progression
 	poetry run brain-progression
+
+brain-prime: #запуск игры prime
+	poetry run brain-prime
 
 build: #собрать пакет
 	poetry build
