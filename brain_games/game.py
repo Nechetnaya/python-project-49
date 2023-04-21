@@ -42,7 +42,7 @@ def say_conditions(game_name):
 
 # getting random numbers and a problem
 def get_random(game_name):
-    if game_name == 'even' or 'prime':
+    if game_name in ['even', 'prime']:
         question = random.randint(1, 50)
     elif game_name == 'calc':
         a = random.randint(10, 30)
@@ -59,18 +59,18 @@ def get_random(game_name):
         b = random.randint(50, 80)
         c = random.randint(3, 8)
         numbers = range(a, b, c)
-        progression = list(numbers)[:10]
-        i = random.randint(0, len(progression) - 1)
-        solve = progression.pop(i)
-        progression.insert(i, '..')
-        question = (progression, solve)
+        pr = list(numbers)[:10]
+        i = random.randint(0, len(pr) - 1)
+        solve = pr.pop(i)
+        pr.insert(i, '..')
+        question = (pr, solve)
     else:
         return
     return question
 
 
 def ask(question, game_name):
-    if game_name == 'even' or 'prime':
+    if game_name in ['even', 'prime']:
         return prompt.string(f'Question: {question}\nYour answer: ')
     elif game_name == 'calc':
         a, b, c = question
@@ -79,8 +79,8 @@ def ask(question, game_name):
         a, b = question
         return int(prompt.string(f'Question: {a} {b}\nYour answer: '))
     elif game_name == 'progression':
-        progression, solve = question
-        return int(prompt.string(f'Question: {str(progression)[1:-1]}\nYour answer: '))
+        pr, solve = question
+        return int(prompt.string(f'Question: {str(pr)[1:-1]}\nYour answer: '))
 
 
 # solves
@@ -124,17 +124,19 @@ def get_solve(question, game_name):
     elif game_name == 'gcd':
         return solve_gcd(question)
     elif game_name == 'progression':
-        progression, solve = question
+        pr, solve = question
         return solve
     elif game_name == 'prime':
         return solve_prime(question)
 
 
 def motivate_user(name, game_name, answer, solve):
-    if game_name == 'even' or 'prime':
+    if game_name in ['even', 'prime']:
         return f"Let's try again, {name}!"
-    elif game_name == 'calc' or 'gcd' or 'progression':
-        return f"'{answer}' is wrong answer ;(. Correct answer was {solve}'.\nLet's try again, {name}!"
+    elif game_name in ['calc', 'gcd', 'progression']:
+        text_1 = f"'{answer}' is wrong answer ;(. Correct answer was '{solve}'."
+        text_2 = f"Let's try again, {name}"
+        return f"{text_1}\n{text_2}!"
 
 
 def congratulate_user(name):
