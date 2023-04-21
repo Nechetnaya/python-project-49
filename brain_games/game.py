@@ -113,10 +113,13 @@ def solve_gcd(question):
 
 
 def solve_prime(question):
-    i = 2
-    while question % i != 0:
-        i += 1
-    return 'yes' if i == question else 'no'
+    if question == 1:
+        return 'yes'
+    else:
+        i = 2
+        while question % i != 0:
+            i += 1
+        return 'yes' if i == question else 'no'
 
 
 # common solve
