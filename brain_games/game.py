@@ -28,68 +28,73 @@ def welcome_user():
 
 def say_conditions(game_name):
     if game_name == 'even':
-        return even.say_conditions()
+        conditions = even.say_conditions()
     elif game_name == 'calc':
-        return calc.say_conditions()
+        conditions = calc.say_conditions()
     elif game_name == 'gcd':
-        return gcd.say_conditions()
+        conditions = gcd.say_conditions()
     elif game_name == 'progression':
-        return progression.say_conditions()
+        conditions = progression.say_conditions()
     elif game_name == 'prime':
-        return prime.say_conditions()
+        conditions = prime.say_conditions()
+    return conditions
 
 
 # getting random numbers and a problem
 def get_random(game_name):
     if game_name == 'even':
-        return even.get_random()
+        random = even.get_random()
     elif game_name == 'calc':
-        return calc.get_random()
+        random = calc.get_random()
     elif game_name == 'gcd':
-        return gcd.get_random()
+        random = gcd.get_random()
     elif game_name == 'progression':
-        return progression.get_random()
+        random = progression.get_random()
     elif game_name == 'prime':
-        return prime.get_random()
+        random = prime.get_random()
+    return random
 
 
 def ask(question, game_name):
     if game_name == 'even':
-        return even.ask(question)
+        output = even.ask(question)
     elif game_name == 'calc':
-        return calc.ask(question)
+        output = calc.ask(question)
     elif game_name == 'gcd':
-        return gcd.ask(question)
+        output = gcd.ask(question)
     elif game_name == 'progression':
-        return progression.ask(question)
+        output = progression.ask(question)
     elif game_name == 'prime':
-        return prime.ask(question)
+        output = prime.ask(question)
+    return output
 
 
 def get_solve(question, game_name):
     if game_name == 'even':
-        return even.get_solve(question)
+        solve = even.get_solve(question)
     elif game_name == 'calc':
-        return calc.get_solve(question)
+        solve = calc.get_solve(question)
     elif game_name == 'gcd':
-        return gcd.get_solve(question)
+        solve = gcd.get_solve(question)
     elif game_name == 'progression':
-        return progression.get_solve(question)
+        solve = progression.get_solve(question)
     elif game_name == 'prime':
-        return prime.get_solve(question)
+        solve = prime.get_solve(question)
+    return solve
 
 
 def motivate_user(name, game_name, answer, solve):
     if game_name == 'even':
-        return even.motivate_user(name)
+        motivation = even.motivate_user(name)
     elif game_name == 'calc':
-        return calc.motivate_user(name, answer, solve)
+        motivation = calc.motivate_user(name, answer, solve)
     elif game_name == 'gcd':
-        return gcd.motivate_user(name, answer, solve)
+        motivation = gcd.motivate_user(name, answer, solve)
     elif game_name == 'progression':
-        return progression.motivate_user(name, answer, solve)
+        motivation = progression.motivate_user(name, answer, solve)
     elif game_name == 'prime':
-        return prime.motivate_user(name)
+        motivation = prime.motivate_user(name)
+    return motivation
 
 
 def congratulate_user(name):
